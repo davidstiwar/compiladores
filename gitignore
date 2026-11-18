@@ -10,4 +10,5 @@ venv/
 .vscode/
 .idea/
 
-
+# Archivos temporales de Word
+~$*.docx
