@@ -1,13 +1,13 @@
 RESULTADOS DE PRUEBAS
 Proyecto: Inventario de tienda
-Fecha: 2026-11-20 11:15:31 -0500
+Fecha: 2026-11-20
 
 ====================================================================
 Prueba: 01_correcto_inventario.txt
 Comando: python main.py programas_prueba\01_correcto_inventario.txt
 Entrada: ninguna
 Resultado: CORRECTO
-Codigo de salida: 0 (esperado: 0)
+Código de salida: 0 (esperado: 0)
 Salida:
 Producto registrado: Arroz
 Entrada registrada: Arroz
@@ -20,7 +20,7 @@ Prueba: 02_correcto_variables_y_condicion.txt
 Comando: python main.py programas_prueba\02_correcto_variables_y_condicion.txt
 Entrada: ninguna
 Resultado: CORRECTO
-Codigo de salida: 0 (esperado: 0)
+Código de salida: 0 (esperado: 0)
 Salida:
 Hay stock
 
@@ -29,7 +29,7 @@ Prueba: 03_correcto_leer_y_repetir.txt
 Comando: python main.py programas_prueba\03_correcto_leer_y_repetir.txt
 Entrada: 5
 Resultado: CORRECTO
-Codigo de salida: 0 (esperado: 0)
+Código de salida: 0 (esperado: 0)
 Salida:
 Ingrese la cantidad:
 Ingrese un valor: 5
@@ -41,7 +41,7 @@ Prueba: 04_error_lexico.txt
 Comando: python main.py programas_prueba\04_error_lexico.txt
 Entrada: ninguna
 Resultado: CORRECTO
-Codigo de salida: 1 (esperado: 1)
+Código de salida: 1 (esperado: 1)
 Salida:
 Error léxico: Carácter no reconocido '$' (línea 3, columna 18)
 
@@ -50,7 +50,7 @@ Prueba: 05_error_sintactico.txt
 Comando: python main.py programas_prueba\05_error_sintactico.txt
 Entrada: ninguna
 Resultado: CORRECTO
-Codigo de salida: 1 (esperado: 1)
+Código de salida: 1 (esperado: 1)
 Salida:
 Error sintáctico: Se esperaba VECES, pero se encontró { (línea 3, columna 13)
 
@@ -59,13 +59,18 @@ Prueba: 06_error_semantico.txt
 Comando: python main.py programas_prueba\06_error_semantico.txt
 Entrada: ninguna
 Resultado: CORRECTO
-Codigo de salida: 1 (esperado: 1)
+Código de salida: 1 (esperado: 1)
 Salida:
 Error semántico: La variable 'total' no está declarada (línea 3, columna 3)
 
 ====================================================================
-Suite: python -m unittest discover -v
+Suite: pruebas automáticas descubiertas en la carpeta test
 Resultado: CORRECTO
+test_main_guarda_la_traduccion_en_utf8 (test_generador_python.PruebasGeneradorPython.test_main_guarda_la_traduccion_en_utf8) ... ok
+test_traduce_comandos_del_inventario (test_generador_python.PruebasGeneradorPython.test_traduce_comandos_del_inventario) ... ok
+test_traduce_division_entre_cero_con_ubicacion (test_generador_python.PruebasGeneradorPython.test_traduce_division_entre_cero_con_ubicacion) ... ok
+test_traduce_lectura_de_datos (test_generador_python.PruebasGeneradorPython.test_traduce_lectura_de_datos) ... ok
+test_traduce_variables_condiciones_y_repeticiones (test_generador_python.PruebasGeneradorPython.test_traduce_variables_condiciones_y_repeticiones) ... ok
 test_error_lexico_indica_su_fase (test_lexico.PruebasLexicas.test_error_lexico_indica_su_fase) ... ok
 test_entero_asignado_a_float_se_convierte_a_decimal (test_semantico.PruebasSemanticas.test_entero_asignado_a_float_se_convierte_a_decimal) ... ok
 test_errores_semanticos_indican_linea_y_columna (test_semantico.PruebasSemanticas.test_errores_semanticos_indican_linea_y_columna) ... ok
@@ -92,8 +97,14 @@ test_repeticiones_anidadas (test_sintactico.PruebasSintactico.test_repeticiones_
 test_tabla_semantica_es_la_que_usa_el_ejecutor (test_sintactico.PruebasSintactico.test_tabla_semantica_es_la_que_usa_el_ejecutor) ... ok
 
 ----------------------------------------------------------------------
-Ran 24 tests in 0.003s
+Ran 29 tests in 0.013s
 
 OK
+
+Traducción a Python
+Comando de uso: python main.py --python programas_prueba\01_correcto_inventario.txt inventario_generado.py
+Prueba: se guardó una traducción UTF-8 y se comprobó que compilara correctamente.
+Verificación: los tres ejemplos correctos produjeron la misma salida con el
+intérprete del proyecto y con el código Python generado.
 
 Resumen: TODAS LAS PRUEBAS PASARON
