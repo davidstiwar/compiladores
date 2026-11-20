@@ -155,3 +155,8 @@ Todos los integrantes deben conocer las fases y poder explicar el código.
 El trabajo se guarda en el repositorio compartido; cada integrante hace sus
 propios commits durante el avance y el grupo registra sus decisiones en la
 bitácora.
+
+
+Uso de la IA 
+
+en la crean de los test y las pruebas y la convecion a python
