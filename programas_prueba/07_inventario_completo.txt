@@ -1,0 +1,10 @@
+inicio{
+  producto(201, "Cafe", 10, 2000)
+  producto(202, "Azucar", 5, 3000)
+
+  entrada(201, 5)
+  salida(202, 2)
+
+  consultar todos()
+  consultar valor()
+}fin
