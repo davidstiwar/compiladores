@@ -1,0 +1,145 @@
+# Gramática de Inventario de tienda
+
+Estas reglas corresponden al tokenizer y al parser. Los tipos, las variables
+declaradas y las reglas del inventario se revisan en el análisis semántico.
+
+## Notación
+
+La notación es EBNF: `|` separa opciones, `[ ]` indica algo opcional y `{ }`
+algo repetible. Las comillas marcan texto literal del lenguaje.
+
+## Elementos léxicos
+
+El tokenizer reconoce las siguientes palabras reservadas, exactamente como
+están escritas (en minúsculas):
+
+```text
+inicio fin int float str bool si sino repetir veces verdadero falso null
+mostrar leer producto entrada salida consultar eliminar todos valor
+```
+
+Las palabras de la lista son reservadas y no sirven como nombres de variables.
+No se exigen espacios entre tokens. No hay punto y coma; el parser ignora los
+saltos de línea.
+
+```
+identificador = (letra | "_"), { letra | dígito | "_" } ;
+entero        = dígito, { dígito } ;
+decimal       = entero, ".", dígito, { dígito } ;
+numero        = entero | decimal ;
+cadena        = comilla_doble, { carácter_cadena_doble | escape }, comilla_doble
+              | comilla_simple, { carácter_cadena_simple | escape }, comilla_simple ;
+escape        = barra_invertida, carácter_distinto_de_nueva_línea ;
+```
+
+Los nombres empiezan con una letra o `_`; después pueden incluir letras,
+números y `_`. Los textos pueden usar comillas simples o dobles. La barra
+invertida permite escapar el carácter siguiente, pero no un salto de línea.
+`letra` y `dígito` siguen las reglas de Python `isalpha()` e `isdigit()`;
+las comillas y la barra invertida son los caracteres `"`, `'` y `\`.
+
+Operadores reconocidos:
+
+```text
++=  -=  *=  /=  ==  !=  >=  <=  &&  ||
++   -   *   /   =   >   <   !
+```
+
+También se usan `{` `}` `(` `)` y `,`. `#` inicia un comentario hasta el fin de
+línea. Se ignoran espacios y tabuladores. Los operadores de dos caracteres se
+reconocen antes que los de uno; cualquier otro carácter causa un error léxico.
+
+## Reglas sintácticas
+
+### Programa y bloque
+
+```
+programa = "inicio", bloque, "fin", EOF ;
+bloque   = "{", { instrucción }, "}" ;
+```
+
+### Instrucciones
+
+```
+instrucción = declaración
+            | asignación
+            | mostrar
+            | leer
+            | condición
+            | repetición
+            | comando_inventario ;
+
+declaración = tipo, <identificador>, [ "=", expresión ] ;
+tipo        = "int" | "float" | "str" | "bool" ;
+
+asignación  = <identificador>, operador_asignación, expresión ;
+operador_asignación = "=" | "+=" | "-=" | "*=" | "/=" ;
+
+mostrar = "mostrar", "(", expresión, ")" ;
+leer    = "leer", "(", <identificador>, ")" ;
+
+condición = "si", expresión, bloque, [ "sino", bloque ] ;
+repetición = "repetir", expresión, "veces", bloque ;
+```
+
+### Comandos del inventario
+
+```
+comando_inventario = producto | entrada | salida | consulta | eliminación ;
+
+producto = "producto", "(", expresión, ",", expresión, ",",
+           expresión, ",", expresión, ")" ;
+entrada  = "entrada", "(", expresión, ",", expresión, ")" ;
+salida   = "salida", "(", expresión, ",", expresión, ")" ;
+
+consulta = "consultar", consulta_especial
+         | "consultar", "(", expresión, ")" ;
+consulta_especial = "todos", "(", ")"
+                  | "valor", "(", ")" ;
+
+eliminación = "eliminar", "(", expresión, ")" ;
+```
+
+Los argumentos son expresiones. Sus tipos y valores se validan después.
+
+### Expresiones y precedencia
+
+La prioridad va de menor a mayor y los operadores de un mismo nivel se agrupan
+de izquierda a derecha:
+
+```ebnf
+expresión       = expresión_o ;
+expresión_o     = expresión_y, { "||", expresión_y } ;
+expresión_y     = igualdad, { "&&", igualdad } ;
+igualdad        = comparación, { ("==" | "!="), comparación } ;
+comparación     = suma, { (">" | "<" | ">=" | "<="), suma } ;
+suma            = producto_expr, { ("+" | "-"), producto_expr } ;
+producto_expr   = unario, { ("*" | "/"), unario } ;
+unario          = "!", unario | factor ;
+factor          = <entero>
+                | <decimal>
+                | <cadena>
+                | "verdadero"
+                | "falso"
+                | "null"
+                | <identificador>
+                | "(", expresión, ")" ;
+```
+
+Los paréntesis permiten cambiar el orden. No existe menos unario.
+
+## Restricciones
+
+- `fin` es obligatorio y no puede haber texto después.
+- `sino` debe ir seguido de un bloque. Para encadenar condiciones, coloca otro
+  `si` dentro de ese bloque.
+- No se admiten números negativos. `-` sí se puede usar para restar, como en
+  `8 - 3`.
+- Las declaraciones duplicadas, los tipos incompatibles y las reglas de
+  inventario se revisan en otras fases.
+
+## Programas de prueba
+
+Los seis ejemplos y sus resultados están descritos en
+[`programas_prueba/README.md`](programas_prueba/README.md) y
+[`resultados_pruebas.txt`](resultados_pruebas.txt).

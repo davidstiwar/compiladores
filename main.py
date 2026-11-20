@@ -1,12 +1,11 @@
-"""Punto de entrada del compilador de Inventario de tienda.
-
-Uso:
-    python main.py programa.txt     # analiza el archivo indicado
-    python main.py                  # analiza un programa de ejemplo
-"""
+"""Punto de entrada del compilador."""
 import sys
 
-from lexico.tokenizer import tokenizar, ErrorLexico
+from errores import ErrorCompilador
+from lexico.tokenizer import tokenizar
+from sintactico.parser import analizar_sintaxis
+from semantico.analizador import analizar_semantica
+from interprete.ejecutor import ejecutar_programa
 
 EJEMPLO = """inicio{
   producto(101, "Arroz", 20, 3500)
@@ -25,13 +24,12 @@ def main():
 
     try:
         tokens = tokenizar(codigo)
-    except ErrorLexico as e:
+        programa = analizar_sintaxis(tokens)
+        tabla = analizar_semantica(programa)
+        ejecutar_programa(programa, tabla)
+    except ErrorCompilador as e:
         print(e)
         sys.exit(1)
-
-    for t in tokens:
-        if t.tipo != "NUEVA_LINEA":
-            print(t)
 
 
 if __name__ == "__main__":

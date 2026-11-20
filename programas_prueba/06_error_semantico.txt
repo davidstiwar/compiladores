@@ -1,0 +1,5 @@
+inicio{
+  int cantidad = 10
+  total = cantidad * 2
+  mostrar(total)
+}fin

@@ -1,0 +1,4 @@
+inicio{
+  producto(101, "Arroz", 20, 3500)
+  int cantidad = $10
+}fin

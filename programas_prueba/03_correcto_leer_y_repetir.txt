@@ -1,0 +1,9 @@
+inicio{
+  int cantidad
+  mostrar("Ingrese la cantidad:")
+  leer(cantidad)
+  repetir 3 veces {
+    mostrar(cantidad)
+    cantidad += 1
+  }
+}fin

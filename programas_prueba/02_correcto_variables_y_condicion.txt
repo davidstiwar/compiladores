@@ -1,0 +1,11 @@
+inicio{
+  int cantidad = 8
+  float precio = 2500.50
+  float total = cantidad * precio
+  bool hay_stock = cantidad > 0
+  si hay_stock && total > 1000 {
+    mostrar("Hay stock")
+  } sino {
+    mostrar("Sin stock")
+  }
+}fin

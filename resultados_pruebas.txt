@@ -1,0 +1,99 @@
+RESULTADOS DE PRUEBAS
+Proyecto: Inventario de tienda
+Fecha: 2026-11-20 11:15:31 -0500
+
+====================================================================
+Prueba: 01_correcto_inventario.txt
+Comando: python main.py programas_prueba\01_correcto_inventario.txt
+Entrada: ninguna
+Resultado: CORRECTO
+Codigo de salida: 0 (esperado: 0)
+Salida:
+Producto registrado: Arroz
+Entrada registrada: Arroz
+Salida registrada: Arroz
+Registros: 1
+Valor total: 87500.00
+
+====================================================================
+Prueba: 02_correcto_variables_y_condicion.txt
+Comando: python main.py programas_prueba\02_correcto_variables_y_condicion.txt
+Entrada: ninguna
+Resultado: CORRECTO
+Codigo de salida: 0 (esperado: 0)
+Salida:
+Hay stock
+
+====================================================================
+Prueba: 03_correcto_leer_y_repetir.txt
+Comando: python main.py programas_prueba\03_correcto_leer_y_repetir.txt
+Entrada: 5
+Resultado: CORRECTO
+Codigo de salida: 0 (esperado: 0)
+Salida:
+Ingrese la cantidad:
+Ingrese un valor: 5
+6
+7
+
+====================================================================
+Prueba: 04_error_lexico.txt
+Comando: python main.py programas_prueba\04_error_lexico.txt
+Entrada: ninguna
+Resultado: CORRECTO
+Codigo de salida: 1 (esperado: 1)
+Salida:
+Error léxico: Carácter no reconocido '$' (línea 3, columna 18)
+
+====================================================================
+Prueba: 05_error_sintactico.txt
+Comando: python main.py programas_prueba\05_error_sintactico.txt
+Entrada: ninguna
+Resultado: CORRECTO
+Codigo de salida: 1 (esperado: 1)
+Salida:
+Error sintáctico: Se esperaba VECES, pero se encontró { (línea 3, columna 13)
+
+====================================================================
+Prueba: 06_error_semantico.txt
+Comando: python main.py programas_prueba\06_error_semantico.txt
+Entrada: ninguna
+Resultado: CORRECTO
+Codigo de salida: 1 (esperado: 1)
+Salida:
+Error semántico: La variable 'total' no está declarada (línea 3, columna 3)
+
+====================================================================
+Suite: python -m unittest discover -v
+Resultado: CORRECTO
+test_error_lexico_indica_su_fase (test_lexico.PruebasLexicas.test_error_lexico_indica_su_fase) ... ok
+test_entero_asignado_a_float_se_convierte_a_decimal (test_semantico.PruebasSemanticas.test_entero_asignado_a_float_se_convierte_a_decimal) ... ok
+test_errores_semanticos_indican_linea_y_columna (test_semantico.PruebasSemanticas.test_errores_semanticos_indican_linea_y_columna) ... ok
+test_null_se_puede_guardar_pero_no_usar_en_cuentas (test_semantico.PruebasSemanticas.test_null_se_puede_guardar_pero_no_usar_en_cuentas) ... ok
+test_rechaza_codigos_duplicados_y_salidas_sin_existencias (test_semantico.PruebasSemanticas.test_rechaza_codigos_duplicados_y_salidas_sin_existencias) ... ok
+test_rechaza_condiciones_y_cantidades_invalidas (test_semantico.PruebasSemanticas.test_rechaza_condiciones_y_cantidades_invalidas) ... ok
+test_rechaza_declaracion_duplicada (test_semantico.PruebasSemanticas.test_rechaza_declaracion_duplicada) ... ok
+test_tabla_guarda_la_ubicacion_declarada (test_semantico.PruebasSemanticas.test_tabla_guarda_la_ubicacion_declarada) ... ok
+test_tipos_operaciones_logicas_y_asignaciones_compuestas (test_semantico.PruebasSemanticas.test_tipos_operaciones_logicas_y_asignaciones_compuestas) ... ok
+test_acepta_varias_instrucciones_en_una_linea (test_sintactico.PruebasSintactico.test_acepta_varias_instrucciones_en_una_linea) ... ok
+test_asignaciones_simples_compuestas_y_precedencia (test_sintactico.PruebasSintactico.test_asignaciones_simples_compuestas_y_precedencia) ... ok
+test_condiciones_logicas_y_sino (test_sintactico.PruebasSintactico.test_condiciones_logicas_y_sino) ... ok
+test_consultar_producto_muestra_el_mismo_formato (test_sintactico.PruebasSintactico.test_consultar_producto_muestra_el_mismo_formato) ... ok
+test_division_entre_cero_se_informa_durante_ejecucion (test_sintactico.PruebasSintactico.test_division_entre_cero_se_informa_durante_ejecucion) ... ok
+test_entero_asignado_a_float_se_muestra_como_decimal (test_sintactico.PruebasSintactico.test_entero_asignado_a_float_se_muestra_como_decimal) ... ok
+test_error_sintactico_con_linea_y_columna (test_sintactico.PruebasSintactico.test_error_sintactico_con_linea_y_columna) ... ok
+test_fin_es_obligatorio (test_sintactico.PruebasSintactico.test_fin_es_obligatorio) ... ok
+test_leer_float_rechaza_valores_no_finitos (test_sintactico.PruebasSintactico.test_leer_float_rechaza_valores_no_finitos) ... ok
+test_leer_rechaza_un_valor_negativo_con_su_ubicacion (test_sintactico.PruebasSintactico.test_leer_rechaza_un_valor_negativo_con_su_ubicacion) ... ok
+test_leer_y_mostrar_con_parentesis (test_sintactico.PruebasSintactico.test_leer_y_mostrar_con_parentesis) ... ok
+test_mostrar_exige_parentesis (test_sintactico.PruebasSintactico.test_mostrar_exige_parentesis) ... ok
+test_operadores_del_mismo_nivel_se_evaluan_de_izquierda_a_derecha (test_sintactico.PruebasSintactico.test_operadores_del_mismo_nivel_se_evaluan_de_izquierda_a_derecha) ... ok
+test_repeticiones_anidadas (test_sintactico.PruebasSintactico.test_repeticiones_anidadas) ... ok
+test_tabla_semantica_es_la_que_usa_el_ejecutor (test_sintactico.PruebasSintactico.test_tabla_semantica_es_la_que_usa_el_ejecutor) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.003s
+
+OK
+
+Resumen: TODAS LAS PRUEBAS PASARON

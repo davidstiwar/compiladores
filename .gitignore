@@ -1,0 +1,7 @@
+# Archivos temporales 
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+venv/
+.venv/

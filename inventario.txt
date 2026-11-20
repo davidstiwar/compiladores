@@ -1,0 +1,39 @@
+inicio{
+  int codigo = 101
+  str nombre = "Arroz"
+  int cantidad = 20
+  float precio = 3500
+  float valor_inicial = cantidad * precio
+  bool hay_stock = cantidad > 0
+
+  producto(codigo, nombre, cantidad, precio)
+  mostrar("Inventario inicial:")
+  consultar(codigo)
+  mostrar("Valor inicial:")
+  mostrar(valor_inicial)
+
+  int llegada
+  mostrar("Unidades que llegaron:")
+  leer(llegada)
+  si llegada > 0 {
+    entrada(codigo, llegada)
+    cantidad += llegada
+  } sino {
+    mostrar("No se agregaron unidades")
+  }
+
+  repetir 2 veces {
+    mostrar("Revision del inventario")
+  }
+
+  si hay_stock && cantidad > 0 {
+    salida(codigo, 1)
+    cantidad -= 1
+    mostrar("Se retiro una unidad")
+  } sino {
+    mostrar("No hay existencias")
+  }
+
+  consultar(codigo)
+  consultar valor()
+}fin

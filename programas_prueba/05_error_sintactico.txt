@@ -1,0 +1,6 @@
+inicio{
+  int contador = 1
+  repetir 3 {
+    mostrar(contador)
+  }
+}fin
