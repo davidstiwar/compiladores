@@ -1,4 +1,3 @@
-
 import unittest
 import subprocess
 import sys
@@ -8,20 +7,17 @@ PROYECTO = Path(__file__).resolve().parent.parent
 MAIN = PROYECTO / "main.py"
 PROGRAMAS = PROYECTO / "programas_prueba"
 
-
 class TestIntegracion(unittest.TestCase):
-
     def ejecutar_programa(self, nombre):
         archivo = PROGRAMAS / nombre
-
         resultado = subprocess.run(
             [sys.executable, str(MAIN), str(archivo)],
             capture_output=True,
             text=True
         )
-
         self.assertEqual(resultado.returncode, 0, resultado.stderr)
         return resultado.stdout
+
 
     def test_inventario_completo(self):
         salida = self.ejecutar_programa("07_inventario_completo.txt")
@@ -41,7 +37,6 @@ class TestIntegracion(unittest.TestCase):
         self.assertIn("No se encontró el producto.", salida)
         self.assertIn("Registros: 0", salida)
         self.assertIn("Valor total: 0.00", salida)
-
 
 if __name__ == "__main__":
     unittest.main()
