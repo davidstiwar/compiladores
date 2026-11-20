@@ -1,0 +1,11 @@
+inicio{
+  producto(301, "Galletas", 12, 1000)
+
+  consultar(301)
+
+  eliminar(301)
+
+  consultar(301)
+
+  consultar valor()
+}fin
