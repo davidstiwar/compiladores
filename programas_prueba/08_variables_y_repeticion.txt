@@ -1,0 +1,21 @@
+inicio{
+  int cantidad = 4
+  float precio = 1500
+  float total = cantidad * precio
+
+  mostrar("Total de la compra:")
+  mostrar(total)
+
+  si total > 5000 {
+    mostrar("Compra necesaria")
+  } sino {
+    mostrar("Compra pequeña")
+  }
+
+  repetir 2 veces {
+    mostrar(cantidad)
+    cantidad += 1
+  }
+
+  mostrar(cantidad)
+}fin
