@@ -98,18 +98,20 @@ El archivo `inventario.txt` pide un entero no negativo cuando se ejecuta
 
 ## Pruebas
 
-La carpeta `programas_prueba` tiene seis programas:
+La carpeta programas_prueba contiene nueve programas de prueba:
 
-- Tres programas correctos: inventario, variables y condiciones, y lectura
-  con repetición.
+- Tres programas correctos originales: inventario, variables y condiciones, y lectura con repetición.
 - Tres programas con errores intencionales: léxico, sintáctico y semántico.
+- Tres programas correctos nuevos: inventario completo, variables y repetición, y eliminación de productos.
 
-También hay 24 pruebas automáticas en `test_lexico.py`,
-`test_semantico.py` y `test_sintactico.py`. Los resultados de los seis
-programas y de la suite automática están en `resultados_pruebas.txt`.
+También existen pruebas automáticas para las fases del compilador y pruebas de integración para verificar el funcionamiento de los programas.
 
-La consigna también pide tres programas nuevos además de los seis anteriores.
-Esos tres programas todavía no están en `programas_prueba`.
+Para ejecutar las pruebas automáticas:
+
+python -m unittest discover -v
+
+
+Las pruebas de integración ejecutan los tres programas nuevos y verifican sus resultados esperados.
 
 ## Actividades del proyecto
 
@@ -160,3 +162,4 @@ bitácora.
 Uso de la IA 
 
 en la crean de los test y las pruebas y la convecion a python
+docs: actualizar documentacion de pruebas
